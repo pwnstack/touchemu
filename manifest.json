@@ -2,22 +2,22 @@
     "files": {
         "fixes.js": {
             "path": "https://raw.githubusercontent.com/pwnstack/touchemu/master/fixes.js",
-            "name": "fixes.js",
+            "filename": "fixes.js",
             "version": "1.4.3"
         },
         "fixes.css": {
             "path": "https://raw.githubusercontent.com/pwnstack/touchemu/master/fixes.css",
-            "name": "fixes.css",
+            "filename": "fixes.css",
             "version": "1.0.2"
         },
         "index.html": {
             "path": "https://raw.githubusercontent.com/pwnstack/touchemu/master/index.html",
-            "name": "index.html",
+            "filename": "index.html",
             "version": "1.2.3"
         },
         "regex.json": {
             "path": "https://raw.githubusercontent.com/pwnstack/touchemu/master/regex.json?v=1.6.0",
-            "name":"regex.json",
+            "filename":"regex.json",
             "version": "1.6.0"
         }
     }
