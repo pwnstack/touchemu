@@ -68,7 +68,6 @@
             })();
         }
 
-        window.initDofus = function(cb) {
             var head = document.getElementsByTagName('head')[0];
 
             var scriptScript = document.createElement('script');
@@ -76,11 +75,9 @@
                 var fixesScript = document.createElement('script');
                 fixesScript.src = 'fixes.js';
                 head.appendChild(fixesScript);
-                cb();
             });
             scriptScript.src = 'build/script.js';
             head.appendChild(scriptScript);
-        };
         
     </script>
         <meta charset="UTF-8">
