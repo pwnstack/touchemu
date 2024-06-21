@@ -14,7 +14,7 @@ var handleEvents = function (e) {
     if (!mouseDown && e.type === "mousemove") return;
 
     // Check if TouchEvent is supported
-    if (typeof TouchEvent !== 'undefined') {
+    if (window.chrome) {
       // Create touch event using TouchEvent
       var touchEvent = new TouchEvent(events[e.type], {
         bubbles: true,
