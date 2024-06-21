@@ -106,15 +106,15 @@ try {
       }, 1000);
     });
 
-    const lindoLogoLoaded = new Promise(resolve => {
-      const lindoLogo = new Image();
-      lindoLogo.addEventListener('load', resolve);
-      lindoLogo.src = "https://www.touch-emu.com/assets/orb-816d0dd3.webp";
+    const TouchEmuLogoLoaded = new Promise(resolve => {
+      const TouchEmuLogo = new Image();
+      TouchEmuLogo.addEventListener('load', resolve);
+      TouchEmuLogo.src = "https://www.touch-emu.com/assets/orb-816d0dd3.webp";
     });
 
     await Promise.all([
       languagesInitialized,
-      lindoLogoLoaded
+      TouchEmuLogoLoaded
     ]);
 
     const translatedTexts = texts[window.Config.language] || texts['en'] || texts[Object.keys(texts)[0]];
@@ -131,31 +131,31 @@ try {
   }
 
   // New website notification
-  if (!window.top.lindoVersion) { // Lindo <= 2.5.2 does not have lindoVersion
-    const lastAsked = window.localStorage.getItem('lindo-update-popup');
+  if (!window.top.TouchEmuVersion) { // TouchEmu <= 2.5.2 does not have TouchEmuVersion
+    const lastAsked = window.localStorage.getItem('TouchEmu-update-popup');
     if (!lastAsked || Date.now() > parseInt(lastAsked) + 1000 * 60 * 60 * 24 * 7) { // 1 week
-      window.localStorage.setItem('lindo-update-popup', Date.now())
+      window.localStorage.setItem('TouchEmu-update-popup', Date.now())
 
       const texts = {
         fr: {
           title: `Notification de TouchEmu`,
           messages: [
             `Salut ! Désolé pour l'intrusion.`,
-            `Le site officiel de Lindo a changé d'adresse. On ne pourra plus te prévenir en cas de nouvelle mise à jour avec la version sur laquelle tu joues. Tu peux corriger ça en téléchargeant la dernière version depuis notre nouvelle adresse :`
+            `Le site officiel de TouchEmu a changé d'adresse. On ne pourra plus te prévenir en cas de nouvelle mise à jour avec la version sur laquelle tu joues. Tu peux corriger ça en téléchargeant la dernière version depuis notre nouvelle adresse :`
           ]
         },
         en: {
           title: `Notification from TouchEmu`,
           messages: [
             `Hi! Sorry for the intrusion.`,
-            `Lindo official website address has changed. We will no longer be able to notify you about upcoming releases of Lindo with the version you're currently playing. You can fix this by downloading the latest version from our new address:`
+            `TouchEmu official website address has changed. We will no longer be able to notify you about upcoming releases of TouchEmu with the version you're currently playing. You can fix this by downloading the latest version from our new address:`
           ]
         },
         es: {
           title: `Notificación de TouchEmu`,
           messages: [
             `¡Hola! Perdón por la intrusión.`,
-            `La dirección del sitio web oficial de Lindo ha cambiado. Ya no podremos notificarle sobre los próximos lanzamientos de Lindo con la versión en la que está jugando actualmente. Puede solucionar este problema descargando la última versión desde nuestra nueva dirección:`
+            `La dirección del sitio web oficial de TouchEmu ha cambiado. Ya no podremos notificarle sobre los próximos lanzamientos de TouchEmu con la versión en la que está jugando actualmente. Puede solucionar este problema descargando la última versión desde nuestra nueva dirección:`
           ]
         }
       }
@@ -170,8 +170,8 @@ try {
     }
   }
 
-  if (!window.localStorage.getItem('lindo-discord-popup')) {
-    window.localStorage.setItem('lindo-discord-popup', true)
+  if (!window.localStorage.getItem('TouchEmu-discord-popup')) {
+    window.localStorage.setItem('TouchEmu-discord-popup', true)
 
     const texts = {
       fr: {
@@ -195,7 +195,7 @@ try {
     }
 
     const link = {
-      url: 'https://www.reddit.com/r/LindoApp/comments/t7auy1/ouverture_du_subreddit/',
+      url: 'https://www.reddit.com/r/TouchEmuApp/comments/t7auy1/ouverture_du_subreddit/',
       text: 'Discord de TouchEmu'
     }
 
