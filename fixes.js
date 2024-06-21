@@ -15,35 +15,34 @@ var handleEvents = function (e) {
 
     // Check if TouchEvent is supported
     if (window.chrome) {
-      // Create touch event using TouchEvent
-      var touchEvent = new TouchEvent(events[e.type], {
-        bubbles: true,
-        cancelable: true,
-        view: window,
-        detail: 1,
-        touches: [{
-          target: e.target,
-          identifier: Date.now(),
-          clientX: e.clientX,
-          clientY: e.clientY,
-          screenX: e.screenX,
-          screenY: e.screenY,
-          pageX: e.pageX,
-          pageY: e.pageY
-        }],
-        changedTouches: [{
-          target: e.target,
-          identifier: Date.now(),
-          clientX: e.clientX,
-          clientY: e.clientY,
-          screenX: e.screenX,
-          screenY: e.screenY,
-          pageX: e.pageX,
-          pageY: e.pageY
-        }]
+      const touchObj = new Touch({
+        identifier: 0,
+        target: e.target,
+        clientX: e.clientX,
+        clientY: e.clientY,
+        pageX: e.pageX,
+        pageY: e.pageY,
+        screenX: e.screenX,
+        screenY: e.screenY,
+        radiusX: 11.5,
+        radiusY: 11.5,
+        rotationAngle: 0,
+        force: e.type === "mouseup" ? 0 : 1,
       });
-
-      // Dispatch touch event
+  
+      const touchEvent = new TouchEvent(events[e.type], {
+        cancelable: true,
+        bubbles: true,
+        touches: e.type === "mouseup" ? [] : [touchObj],
+        targetTouches: e.type === "mouseup" ? [] : [touchObj],
+        changedTouches: [touchObj],
+        shiftKey: false,
+        composed: true,
+        isTrusted: true,
+        sourceCapabilities: new InputDeviceCapabilities({ firesTouchEvents: true }),
+        view: window
+      });
+  
       e.target.dispatchEvent(touchEvent);
     } else {
       // Create custom touch event
