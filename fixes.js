@@ -13,7 +13,6 @@ var handleEvents = function (e) {
 
     if (!mouseDown && e.type === "mousemove") return;
 
-    // Check if TouchEvent is supported
     if (window.chrome) {
       const touchObj = new Touch({
         identifier: 0,
@@ -44,6 +43,8 @@ var handleEvents = function (e) {
       });
   
       e.target.dispatchEvent(touchEvent);
+      e.stopPropagation();
+      return false;
     } else {
       // Create custom touch event
       var customTouchEvent = document.createEvent('Event');
