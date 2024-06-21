@@ -13,32 +13,53 @@ var handleEvents = function (e) {
 
     if (!mouseDown && e.type === "mousemove") return;
 
-    var touchEvent = document.createEvent("TouchEvent");
-    touchEvent.initTouchEvent(
-      events[e.type],   
-      true,            
-      true,           
-      window,            
-      1,                 
-      e.clientX,        
-      e.clientY,        
-      e.pageX,           
-      e.pageY,           
-      false,             
-      false,            
-      false,             
-      false,             
-      null,              
-      null,              
-      null              
-    );
+    var touchEvent = new TouchEvent(events[e.type], {
+      touches: [
+        new Touch({
+          identifier: Date.now(),
+          target: e.target,
+          clientX: e.clientX,
+          clientY: e.clientY,
+          pageX: e.pageX,
+          pageY: e.pageY,
+          screenX: e.screenX,
+          screenY: e.screenY,
+          radiusX: 11.5,
+          radiusY: 11.5,
+          rotationAngle: 0,
+          force: e.type === "mouseup" ? 0 : 1
+        })
+      ],
+      targetTouches: [],
+      changedTouches: [
+        new Touch({
+          identifier: Date.now(),
+          target: e.target,
+          clientX: e.clientX,
+          clientY: e.clientY,
+          pageX: e.pageX,
+          pageY: e.pageY,
+          screenX: e.screenX,
+          screenY: e.screenY,
+          radiusX: 11.5,
+          radiusY: 11.5,
+          rotationAngle: 0,
+          force: e.type === "mouseup" ? 0 : 1
+        })
+      ],
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
 
+    // Dispatch the touch event
     e.target.dispatchEvent(touchEvent);
   } catch (err) {
     console.error(err);
   }
 
   e.stopPropagation();
+  // e.preventDefault();
   return false;
 };
 
@@ -50,6 +71,7 @@ try {
   console.error(err);
 }
 
+/* Popups */
 
 (function () {
 
