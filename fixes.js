@@ -13,47 +13,66 @@ var handleEvents = function (e) {
 
     if (!mouseDown && e.type === "mousemove") return;
 
-    var touchEvent = new TouchEvent(events[e.type], {
-      touches: [
-        new Touch({
-          identifier: Date.now(),
+    // Check if TouchEvent is supported
+    if (typeof TouchEvent !== 'undefined') {
+      // Create touch event using TouchEvent
+      var touchEvent = new TouchEvent(events[e.type], {
+        bubbles: true,
+        cancelable: true,
+        view: window,
+        detail: 1,
+        touches: [{
           target: e.target,
+          identifier: Date.now(),
           clientX: e.clientX,
           clientY: e.clientY,
-          pageX: e.pageX,
-          pageY: e.pageY,
           screenX: e.screenX,
           screenY: e.screenY,
-          radiusX: 11.5,
-          radiusY: 11.5,
-          rotationAngle: 0,
-          force: e.type === "mouseup" ? 0 : 1
-        })
-      ],
-      targetTouches: [],
-      changedTouches: [
-        new Touch({
-          identifier: Date.now(),
+          pageX: e.pageX,
+          pageY: e.pageY
+        }],
+        changedTouches: [{
           target: e.target,
+          identifier: Date.now(),
           clientX: e.clientX,
           clientY: e.clientY,
-          pageX: e.pageX,
-          pageY: e.pageY,
           screenX: e.screenX,
           screenY: e.screenY,
-          radiusX: 11.5,
-          radiusY: 11.5,
-          rotationAngle: 0,
-          force: e.type === "mouseup" ? 0 : 1
-        })
-      ],
-      bubbles: true,
-      cancelable: true,
-      view: window
-    });
+          pageX: e.pageX,
+          pageY: e.pageY
+        }]
+      });
 
-    // Dispatch the touch event
-    e.target.dispatchEvent(touchEvent);
+      // Dispatch touch event
+      e.target.dispatchEvent(touchEvent);
+    } else {
+      // Create custom touch event
+      var customTouchEvent = document.createEvent('Event');
+      customTouchEvent.initEvent(events[e.type], true, true);
+      customTouchEvent.touches = [{
+        target: e.target,
+        identifier: Date.now(),
+        clientX: e.clientX,
+        clientY: e.clientY,
+        screenX: e.screenX,
+        screenY: e.screenY,
+        pageX: e.pageX,
+        pageY: e.pageY
+      }];
+      customTouchEvent.changedTouches = [{
+        target: e.target,
+        identifier: Date.now(),
+        clientX: e.clientX,
+        clientY: e.clientY,
+        screenX: e.screenX,
+        screenY: e.screenY,
+        pageX: e.pageX,
+        pageY: e.pageY
+      }];
+
+      // Dispatch custom touch event
+      e.target.dispatchEvent(customTouchEvent);
+    }
   } catch (err) {
     console.error(err);
   }
