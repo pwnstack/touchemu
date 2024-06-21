@@ -90,8 +90,6 @@ try {
   console.error(err);
 }
 
-/* Popups */
-
 (function () {
 
   /**
@@ -108,11 +106,101 @@ try {
       }, 1000);
     });
 
-    await languagesInitialized;
+    const lindoLogoLoaded = new Promise(resolve => {
+      const lindoLogo = new Image();
+      lindoLogo.addEventListener('load', resolve);
+      lindoLogo.src = "https://www.touch-emu.com/assets/orb-816d0dd3.webp";
+    });
 
-    // Proceed with sending popup logic
-    console.log("Languages initialized, proceeding with sending popup...");
-    // Add the popup sending logic here.
+    await Promise.all([
+      languagesInitialized,
+      lindoLogoLoaded
+    ]);
+
+    const translatedTexts = texts[window.Config.language] || texts['en'] || texts[Object.keys(texts)[0]];
+
+    window.gui.openSimplePopup(`
+      <div>
+        ${translatedTexts.messages.join('<br />')}<br />
+        <a target="_blank" href="${link.url}" style="text-align: center; font-size: 1.2em; display: inline-block; width: 100%; margin-top: 0.4em; text-decoration: none;">
+          <img src="https://www.touch-emu.com/assets/orb-816d0dd3.webp" style="height: 1.2em; display: inline-block; vertical-align: middle;"/>
+          <span style="vertical-align: middle;">${link.text}</span>
+        </a>
+      </div>
+    `, translatedTexts.title);
   }
 
+  // New website notification
+  if (!window.top.lindoVersion) { // Lindo <= 2.5.2 does not have lindoVersion
+    const lastAsked = window.localStorage.getItem('lindo-update-popup');
+    if (!lastAsked || Date.now() > parseInt(lastAsked) + 1000 * 60 * 60 * 24 * 7) { // 1 week
+      window.localStorage.setItem('lindo-update-popup', Date.now())
+
+      const texts = {
+        fr: {
+          title: `Notification de TouchEmu`,
+          messages: [
+            `Salut ! Désolé pour l'intrusion.`,
+            `Le site officiel de Lindo a changé d'adresse. On ne pourra plus te prévenir en cas de nouvelle mise à jour avec la version sur laquelle tu joues. Tu peux corriger ça en téléchargeant la dernière version depuis notre nouvelle adresse :`
+          ]
+        },
+        en: {
+          title: `Notification from TouchEmu`,
+          messages: [
+            `Hi! Sorry for the intrusion.`,
+            `Lindo official website address has changed. We will no longer be able to notify you about upcoming releases of Lindo with the version you're currently playing. You can fix this by downloading the latest version from our new address:`
+          ]
+        },
+        es: {
+          title: `Notificación de TouchEmu`,
+          messages: [
+            `¡Hola! Perdón por la intrusión.`,
+            `La dirección del sitio web oficial de Lindo ha cambiado. Ya no podremos notificarle sobre los próximos lanzamientos de Lindo con la versión en la que está jugando actualmente. Puede solucionar este problema descargando la última versión desde nuestra nueva dirección:`
+          ]
+        }
+      }
+
+      const link = {
+        url: 'https://www.touch-emu.com',
+        text: 'touch-emu.com'
+      }
+
+      sendPopup(texts, link)
+      return
+    }
+  }
+
+  if (!window.localStorage.getItem('lindo-discord-popup')) {
+    window.localStorage.setItem('lindo-discord-popup', true)
+
+    const texts = {
+      fr: {
+        title: `Notification de TouchEmu`,
+        messages: [
+          ` Tu peux désormais nous retrouver sur Discord.<br />`
+        ]
+      },
+      en: {
+        title: `Notification from TouchEmu`,
+        messages: [
+          ` You can now find us on Discord.<br />`
+        ]
+      },
+      es: {
+        title: `Notificación de TouchEmu`,
+        messages: [
+          `Ahora puedes encontrarnos en Discord.<br /> `
+        ]
+      }
+    }
+
+    const link = {
+      url: 'https://www.reddit.com/r/LindoApp/comments/t7auy1/ouverture_du_subreddit/',
+      text: 'Discord de TouchEmu'
+    }
+
+    sendPopup(texts, link)
+    return
+  }
+  
 })();
