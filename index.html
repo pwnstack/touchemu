@@ -1,8 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="fr">
-    <head>
-        <script>
-        window.ontouchstart = function(e) {};
+
+<head>
+    <script>
+        window.appVersion = "3.3.18";
+        window.buildVersion = "1.64.4";
+        window.ontouchstart = function (e) { };
 
         // Init
         window.buildVersion = window.top.buildVersion;
@@ -14,7 +17,7 @@
         window._ = {
             appVersion: window.appVersion,
             buildVersion: window.buildVersion,
-            client: "android"
+            client: "ios"
         };
 
         window.indexedDB = {};
@@ -26,64 +29,66 @@
         window.cordova = {
             plugins: {
                 isemulator: {
-                    assess: function(fct) {
+                    assess: function (fct) {
                         fct(false);
                     }
                 },
                 Keyboard: {
-                    close: function() {},
-                    disableScroll: function() {},
-                    show: function() {},
-                    hideKeyboardAccessoryBar: function() {}
+                    close: function () { },
+                    disableScroll: function () { },
+                    show: function () { },
+                    hideKeyboardAccessoryBar: function () { }
                 },
                 notification: {
                     local: false
                 },
                 pushNotification: {
-                    onDeviceReady: function() {},
-                    setUserId: function() {},
-                    registerDevice: function() {}
+                    onDeviceReady: function () { },
+                    setUserId: function () { },
+                    registerDevice: function () { }
                 }
             }
         };
-        
+
         if (window.top.platform == "darwin") {
-            (function() {
-                window.requestAnimationFrame = function(callback) {
+            (function () {
+                window.requestAnimationFrame = function (callback) {
                     var self = requestAnimationFrame;
                     self.queue.push(callback);
                     if (!self.timeout) {
-                        self.timeout = setTimeout(function() {
+                        self.timeout = setTimeout(function () {
                             var queue = self.queue;
                             self.queue = [];
                             self.timeout = null;
-                            queue.forEach(function(q) {
+                            queue.forEach(function (q) {
                                 q();
                             });
                         }, 16);
                     }
                 };
-                requestAnimationFrame.queue   = [];
+                requestAnimationFrame.queue = [];
                 requestAnimationFrame.timeout = null;
             })();
         }
 
-            var head = document.getElementsByTagName('head')[0];
+        var head = document.getElementsByTagName('head')[0];
 
-            var scriptScript = document.createElement('script');
-            scriptScript.addEventListener('load', function() {
-                var fixesScript = document.createElement('script');
-                fixesScript.src = 'fixes.js';
-                head.appendChild(fixesScript);
-            });
-            scriptScript.src = 'build/script.js';
-            head.appendChild(scriptScript);
-        
+        var scriptScript = document.createElement('script');
+        scriptScript.addEventListener('load', function () {
+            var fixesScript = document.createElement('script');
+            fixesScript.src = 'fixes.js';
+            head.appendChild(fixesScript);
+        });
+        scriptScript.src = 'build/script.js';
+        head.appendChild(scriptScript);
+
     </script>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="build/styles-native.css" />
-        <link rel="stylesheet" href="fixes.css" />
-    </head>
-    <body>
-    </body>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="build/styles-native.css" />
+    <link rel="stylesheet" href="fixes.css" />
+</head>
+
+<body>
+</body>
+
 </html>
