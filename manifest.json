@@ -2,19 +2,19 @@
     "files": {
         "fixes.js": {
             "filename": "fixes.js",
-            "version": "1.4.3"
+            "version": "1.4.4"
         },
         "fixes.css": {
             "filename": "fixes.css",
-            "version": "1.0.2"
+            "version": "1.0.3"
         },
         "index.html": {
             "filename": "index.html",
-            "version": "1.2.6"
+            "version": "1.2.7"
         },
         "regex.json": {
             "filename":"regex.json",
-            "version": "1.6.0"
+            "version": "1.6.1"
         }
     }
 }
