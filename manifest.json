@@ -1,19 +1,19 @@
 {
     "files": {
         "fixes.js": {
-            "filename": "fixes.js",
+            "filename": "https://raw.githubusercontent.com/pwnstack/touchemu/main/fixes.js",
             "version": "1.4.4"
         },
         "fixes.css": {
-            "filename": "fixes.css",
+            "filename": "https://raw.githubusercontent.com/pwnstack/touchemu/main/fixes.css",
             "version": "1.0.3"
         },
         "index.html": {
-            "filename": "index.html",
+            "filename": "https://raw.githubusercontent.com/pwnstack/touchemu/main/index.html",
             "version": "1.3.0"
         },
         "regex.json": {
-            "filename":"regex.json",
+            "filename":"https://raw.githubusercontent.com/pwnstack/touchemu/main/regex.json",
             "version": "1.6.1"
         }
     }
