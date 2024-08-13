@@ -70,17 +70,43 @@
         }
 
         var head = document.getElementsByTagName('head')[0];
-
-       
-
     </script>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="build/styles-native.css" />
     <link rel="stylesheet" href="fixes.css" />
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        a.button:hover {
+            background-color: #0056b3;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+    </style>
 </head>
 
 <body>
-    <a href="https://www.touch-emu.com/download">THIS VERSION IS NOT SUPPORTED UPDATE THE EMULATEUR</a>
+    <a href="https://www.touch-emu.com/download" class="button">THIS VERSION IS NOT SUPPORTED. UPDATE THE EMULATEUR</a>
 </body>
 
 </html>
