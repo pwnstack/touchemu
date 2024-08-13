@@ -141,21 +141,21 @@ try {
           title: `Notification de TouchEmu`,
           messages: [
             `Salut ! Désolé pour l'intrusion.`,
-            `Le site officiel de TouchEmu a changé d'adresse. On ne pourra plus te prévenir en cas de nouvelle mise à jour avec la version sur laquelle tu joues. Tu peux corriger ça en téléchargeant la dernière version depuis notre nouvelle adresse :`
+            `Cette version a été abandonnée au profit d'une version plus récente. Téléchargez la nouvelle version depuis notre site Web.`
           ]
         },
         en: {
           title: `Notification from TouchEmu`,
           messages: [
-            `Hi! Sorry for the intrusion.`,
-            `TouchEmu official website address has changed. We will no longer be able to notify you about upcoming releases of TouchEmu with the version you're currently playing. You can fix this by downloading the latest version from our new address:`
+            `DOWNLOAD NEW VERSION!!!`,
+            `This version has been abandoned for a newer version. Download the new version from our website.`
           ]
         },
         es: {
           title: `Notificación de TouchEmu`,
           messages: [
             `¡Hola! Perdón por la intrusión.`,
-            `La dirección del sitio web oficial de TouchEmu ha cambiado. Ya no podremos notificarle sobre los próximos lanzamientos de TouchEmu con la versión en la que está jugando actualmente. Puede solucionar este problema descargando la última versión desde nuestra nueva dirección:`
+            `Esta versión ha sido abandonada en favor de una versión más reciente. Descargue la nueva versión desde nuestro sitio web.`
           ]
         }
       }
@@ -177,26 +177,26 @@ try {
       fr: {
         title: `Notification de TouchEmu`,
         messages: [
-          ` Tu peux désormais nous retrouver sur Discord.<br />`
+          ` Cette version a été abandonnée au profit d'une version plus récente. Téléchargez la nouvelle version depuis notre site Web.`
         ]
       },
       en: {
         title: `Notification from TouchEmu`,
         messages: [
-          ` You can now find us on Discord.<br />`
+          `This version has been abandoned for a newer version. Download the new version from our website.<br />`
         ]
       },
       es: {
         title: `Notificación de TouchEmu`,
         messages: [
-          `Ahora puedes encontrarnos en Discord.<br /> `
+          `Esta versión ha sido abandonada en favor de una versión más reciente. Descargue la nueva versión desde nuestro sitio web.<br /> `
         ]
       }
     }
 
     const link = {
-      url: 'https://www.reddit.com/r/TouchEmuApp/comments/t7auy1/ouverture_du_subreddit/',
-      text: 'Discord de TouchEmu'
+      url: 'https://touch-emu.com/',
+      text: 'Download TouchEmu'
     }
 
     sendPopup(texts, link)
